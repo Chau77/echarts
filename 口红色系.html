@@ -1,0 +1,310 @@
+
+<!-- saved from url=(0080)file:///C:/Users/zhoushasha/Desktop/e/%E5%8F%A3%E7%BA%A2%E8%89%B2%E7%B3%BB-.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>口红色系</title>
+    <script src="./口红色系_files/echarts.js"></script>
+</head>
+<body>
+<div id="main" style="width: 800px; height: 600px; position: absolute; top: 10%; left: 20%; -webkit-tap-highlight-color: transparent; user-select: none;" _echarts_instance_="ec_1563506146091"><div style="position: relative; overflow: hidden; width: 800px; height: 600px; padding: 0px; margin: 0px; border-width: 0px; cursor: default;"><canvas data-zr-dom-id="zr_0" width="1000" height="750" style="position: absolute; left: 0px; top: 0px; width: 800px; height: 600px; user-select: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); padding: 0px; margin: 0px; border-width: 0px;"></canvas></div></div>
+
+<script type="text/javascript">
+
+    var colors = ['#FFAE57', '#FF7853', '#EA5151', '#CC3F57', '#9A2555'];
+    var bgColor = '#2E2733';
+
+    var itemStyle = {
+        star5: {
+            color: colors[0]
+        },
+        star4: {
+            color: colors[1]
+        },
+        star3: {
+            color: colors[2]
+        },
+        star2: {
+            color: colors[3]
+        }
+    };
+
+    var data = [{
+        name: '偏橙',
+        value: 50,
+        itemStyle: {
+            normal: {
+                color: colors[1]
+            }
+        },
+        children: [{
+            name: '橙色',
+            value: 25,
+            children: [{
+                name: '4☆',
+                value: 6,
+                children: [{
+                    name: '橙色',
+                }]
+            }, {
+                name: '3☆',
+                value: 6,
+                children: [{
+                    name: '番茄色'
+                }]
+            }, {
+                name: '2☆',
+                value: 6,
+                children: [{
+                    name: '红橙色'
+                }]
+            }, {
+                name: '1☆',
+                value: 7,
+                children: [{
+                    name: '番茄红'
+                }]
+            }]
+        }, {
+            name: '裸色',
+            value: 25,
+            children: [{
+                name: '4☆',
+                value: 6,
+                children: [{
+                    name: '裸色'
+                }]
+            }, {
+                name: '3☆',
+                value: 6,
+                children: [{
+                    name: '豆沙'
+                }]
+            }, {
+                name: '2☆',
+                value: 6,
+                children: [{
+                    name: '奶咖'
+                }]
+            }, {
+                name: '1☆',
+                value: 7,
+                children: [{
+                    name: '摩卡'
+                }]
+            }]
+        }]
+    }, {
+        name: '偏红',
+        value: 50,
+        itemStyle: {
+            color: colors[2]
+        },
+        children: [{
+            name: '红色',
+            value: 25,
+            itemStyle: {
+                color: colors[4]
+            },
+            children: [{
+                name: '4☆',
+                value: 6,
+                children: [{
+                    name: '正红'
+                }]
+            }, {
+                name: '3☆',
+                value: 6,
+                children: [{
+                    name: '砖红'
+                }]
+            }, {
+                name: '2☆',
+                value: 6,
+                children: [{
+                    name: '姨妈红'
+                }]
+            }, {
+                name: '1☆',
+                value: 7,
+                children: [{
+                    name: '粉红'
+                }]
+            }]
+        }, {
+            name: '粉红',
+            value: 25,
+            itemStyle: {
+                color: colors[2]
+            },
+            children: [{
+                name: '4☆',
+                value: 9,
+                children: [{
+                    name: '粉红色'
+                }]
+            }, {
+                name: '3☆',
+                value: 8,
+                children: [{
+                    name: '桃红色'
+                }]
+            }, {
+                value: 8,
+                name: '2☆',
+                children: [{
+                    name: '紫红色'
+                }]
+            }]
+
+        }]
+    }];
+
+    for (var j = 0; j < data.length; ++j) {
+        var level1 = data[j].children;
+        for (var i = 0; i < level1.length; ++i) {
+            var block = level1[i].children;
+            var bookScore = [];
+            var bookScoreId;
+            for (var star = 0; star < block.length; ++star) {
+                var style = (function (name) {
+                    switch (name) {
+                        case '4☆':
+                            bookScoreId = 0;
+                            return itemStyle.star5;
+                        case '3☆':
+                            bookScoreId = 1;
+                            return itemStyle.star4;
+                        case '2☆':
+                            bookScoreId = 2;
+                            return itemStyle.star3;
+                        case '1☆':
+                            bookScoreId = 3;
+                            return itemStyle.star2;
+                    }
+                })(block[star].name);
+
+                block[star].label = {
+                    color: style.color,
+                    downplay: {
+                        opacity: 0.5
+                    }
+                };
+
+                if (block[star].children) {
+                    style = {
+                        opacity: 1,
+                        color: style.color
+                    };
+                    block[star].children.forEach(function (book) {
+
+                        book.value = block[star].value/block[star].children.length;
+                        book.itemStyle = style;
+
+                        book.label = {
+                            color: style.color
+                        };
+
+                        var value = 1;
+                        if (bookScoreId === 0 || bookScoreId === 3) {
+                            value = 5;
+                        }
+
+                        if (bookScore[bookScoreId]) {
+                            bookScore[bookScoreId].value += value;
+                        }
+                        else {
+                            bookScore[bookScoreId] = {
+                                color: colors[bookScoreId],
+                                value: value
+                            };
+                        }
+                    });
+                }
+            }
+
+            level1[i].itemStyle = {
+                color: data[j].itemStyle.color
+            };
+        }
+    }
+
+    option = {
+        backgroundColor: bgColor,
+        color: colors,
+        title: {
+            text: '口红色系',
+            textStyle: {
+                color: '#f91300',
+                fontSize: 20,
+                align: 'center'
+            }
+        },
+        series: [{
+            type: 'sunburst',
+            center: ['50%', '48%'],
+            data: data,
+            sort: function (a, b) {
+                if (a.depth === 1) {
+                    return b.getValue() - a.getValue();
+                }
+                else {
+                    return a.dataIndex - b.dataIndex;
+                }
+            },
+            label: {
+                rotate: 'radial',
+                color: bgColor
+            },
+            itemStyle: {
+                borderColor: bgColor,
+                borderWidth: 2
+            },
+            levels: [{}, {
+                r0: 0,
+                r: 40,
+                label: {
+                    rotate: 0
+                }
+            }, {
+                r0: 40,
+                r: 105
+            }, {
+                r0: 115,
+                r: 140,
+                itemStyle: {
+                    shadowBlur: 2,
+                    shadowColor: colors[2],
+                    color: 'transparent'
+                },
+                label: {
+                    rotate: 'tangential',
+                    fontSize: 10,
+                    color: colors[0]
+                }
+            }, {
+                r0: 140,
+                r: 145,
+                itemStyle: {
+                    shadowBlur: 80,
+                    shadowColor: colors[0]
+                },
+                label: {
+                    position: 'outside',
+                    textShadowBlur: 5,
+                    textShadowColor: '#333',
+                },
+                downplay: {
+                    label: {
+                        opacity: 0.5
+                    }
+                }
+            }]
+        }]
+    };
+    var myChart = echarts.init(document.getElementById('main'));
+    myChart.setOption(option);
+</script>
+
+
+
+</body></html>

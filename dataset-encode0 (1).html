@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+   </head>
+   <body style="height: 100%; margin: 0">
+       <div id="container" style="height: 100%"></div>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-gl/echarts-gl.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts-stat/ecStat.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=xfhhaTThl11qYVrqLZii6w8qE5ggnhrY&__ec_v__=20190126"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+       <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+option = null;
+var option = {
+    dataset: {
+        source: [
+            ['score', 'Price', 'product'],
+            [250, 250, '比利时'],
+            [234.2, 234.2, '意大利'],
+            [215.22, 215.22, '法国'],
+            [197,35, 197.35, '其他'],
+            [168.01 , 168.01, '加拿大'],
+            [134.5 , 134.5 , '日本'],
+            [113.95, 113.95, '澳洲'],
+            [102.5 , 102.5, '爱尔兰'],
+            [88.43, 88.43, '美国'],
+            [88.4 , 88.4, '英国'],
+            [64.91, 64.91, '韩国'],
+            [40.98, 40.98, '泰国'],
+            [39.25, 39.25, '德国'],
+            [38.02 , 38.02 , '中国台湾'],
+            [36.46, 36.46, '中国内地'],
+        ]
+    },
+    grid: {containLabel: true},
+    xAxis: {name: 'Price'},
+    yAxis: {type: 'category'},
+    visualMap: {
+        orient: 'horizontal',
+        left: 'center',
+        min: 35,
+        max: 250,
+        text: ['High Price', 'Low Price'],
+        // Map the score column to color
+        dimension: 0,
+        inRange: {
+            color: ['#D7DA8B', '#E15457']
+        }
+    },
+    series: [
+        {
+            type: 'bar',
+            encode: {
+                // Map the "amount" column to X axis.
+                x: 'amount',
+                // Map the "product" column to Y axis
+                y: 'product'
+            }
+        }
+    ]
+};
+;
+if (option && typeof option === "object") {
+    myChart.setOption(option, true);
+}
+       </script>
+   </body>
+</html>
